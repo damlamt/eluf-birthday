@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Doğum Günü Sürprizi</title>
+<style>
+body {background:#ffb6d9; font-family:Arial; text-align:center; padding:40px;}
+.container {background:white; padding:20px; border-radius:20px; width:80%; margin:auto;}
+textarea {width:90%; height:150px; padding:10px; border-radius:10px; border:none; outline:none;}
+input {width:90%; padding:10px; border-radius:10px; border:none; margin-top:10px;}
+button {margin-top:15px; padding:10px 20px; border:none; border-radius:10px; background:#ff4da6; color:white; font-size:18px;}
+</style>
+</head>
+<body>
+<h1>🎀 Mutlu Doğum Günü 🎀</h1>
+
+<div class="container">
+<h3>Mektubun</h3>
+<textarea id="letter" placeholder="Mektubunu buraya yaz..."></textarea>
+
+<h3>Şarkı Linki</h3>
+<input id="song" placeholder="Şarkı linki...">
+
+<button onclick="save()">Kaydet</button>
+
+<div id="savedSong"></div>
+</div>
+
+<script>
+document.getElementById("letter").value = localStorage.getItem("letter") || "";
+document.getElementById("song").value = localStorage.getItem("song") || "";
+
+function save(){
+    localStorage.setItem("letter", document.getElementById("letter").value);
+    localStorage.setItem("song", document.getElementById("song").value);
+    loadSong();
+}
+
+function loadSong(){
+    let s = localStorage.getItem("song");
+    if(s){
+        document.getElementById("savedSong").innerHTML = '<iframe width="300" height="200" src="'+s+'" allowfullscreen></iframe>';
+    }
+}
+loadSong();
+</script>
+</body>
+</html>
